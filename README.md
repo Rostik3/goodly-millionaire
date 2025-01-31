@@ -8,6 +8,8 @@ You click on an answer cell, which turns **selected** for a second. Then it show
 1. `npm install`
 2. `npm run dev`
 
-## Deployment Link
+## Live Demo
 
-[soon to be]
+Click here to see the demo:
+
+[Millionaire Game](https://goodly-millionaire-esmpbqxw0-ross-edens-projects.vercel.app)
