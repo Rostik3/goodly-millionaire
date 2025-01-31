@@ -1,0 +1,17 @@
+@use '@/styles/variables.scss' as *;
+
+.headline {
+  font-size: 3.5rem;
+  font-weight: 600;
+  margin-bottom: 4rem;
+  color: $color-black;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+
+  @media (max-width: 1024px) {
+    font-size: 2rem;
+    max-width: inherit;
+  }
+}

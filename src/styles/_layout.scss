@@ -1,0 +1,18 @@
+@use './variables' as vars;
+@use './mixins' as mixins;
+
+.page-container {
+  @include mixins.flex-center(column, center, center);
+  padding: 2rem;
+  height: 100vh;
+
+  background: linear-gradient(
+    to top left,
+    vars.$color-bg-peach 50%,
+    vars.$color-white 50%
+  );
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+}

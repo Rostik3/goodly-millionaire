@@ -1,0 +1,56 @@
+@use '@/styles/variables' as vars;
+@use '@/styles/mixins' as mixins;
+
+.answerCell {
+  @include mixins.cell-base(40%);
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+
+  &::after {
+    width: 1.125rem;
+    left: -1rem;
+
+    @media (max-width: 768px) {
+      left: calc(-50% + 1px);
+      width: 50%;
+    }
+  }
+  &::before {
+    width: 1.125rem;
+    left: calc(100% - 1px);
+
+    @media (max-width: 768px) {
+      right: calc(50% + 1px);
+      width: 50%;
+    }
+  }
+
+  .content {
+    width: 80%;
+    justify-content: start;
+    .answerId {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: vars.$color-orange;
+      margin-right: 0.5rem;
+    }
+    .answer {
+      font-size: 1.25rem;
+      font-weight: 400;
+    }
+  }
+}
+
+.selected {
+  @include mixins.cell-state(vars.$color-orange);
+}
+
+.correct {
+  @include mixins.cell-state(vars.$color-green);
+}
+
+.wrong {
+  @include mixins.cell-state(vars.$color-red);
+}

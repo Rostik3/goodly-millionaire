@@ -1,0 +1,6 @@
+@use '@/styles/variables' as *;
+@use '@/styles/layout' as *;
+
+.pageContainer {
+  @extend .page-container;
+}

@@ -1,0 +1,29 @@
+@use '@/styles/variables' as vars;
+@use '@/styles/mixins' as mixins;
+
+.ladderCell {
+  @include mixins.cell-base();
+  max-width: 19rem;
+
+  margin-bottom: 0.5rem;
+
+  .content {
+    .price {
+      font-size: 1.25rem;
+      font-weight: 400;
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: 70%;
+  }
+}
+
+.highlighted {
+  @include mixins.cell-state(vars.$color-orange);
+  @include mixins.cell-content-color(vars.$color-orange);
+}
+
+.disabled {
+  @include mixins.cell-content-color(vars.$color-gray);
+}

@@ -1,0 +1,135 @@
+[
+  {
+    "id": 1,
+    "question": "Which gas is most abundant in the Earth's atmosphere? (1)",
+    "money": 500,
+    "answers": [
+      { "id": "A", "text": "Oxygen", "isCorrect": false },
+      { "id": "B", "text": "Nitrogen", "isCorrect": true },
+      { "id": "C", "text": "Carbon Dioxide", "isCorrect": false },
+      { "id": "D", "text": "Hydrogen", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 13,
+    "question": "Which elements are noble gases? (2)",
+    "money": 1000,
+    "answers": [
+      { "id": "A", "text": "Hydrogen", "isCorrect": false },
+      { "id": "B", "text": "Neon", "isCorrect": true },
+      { "id": "C", "text": "Argon", "isCorrect": true },
+      { "id": "D", "text": "Boron", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 3,
+    "question": "What is the hardest natural substance on Earth? (1)",
+    "money": 2000,
+    "answers": [
+      { "id": "A", "text": "Gold", "isCorrect": false },
+      { "id": "B", "text": "Iron", "isCorrect": false },
+      { "id": "C", "text": "Diamond", "isCorrect": true },
+      { "id": "D", "text": "Quartz", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 4,
+    "question": "Which language is used to create this quiz? (1)",
+    "money": 4000,
+    "answers": [
+      { "id": "A", "text": "Python", "isCorrect": false },
+      { "id": "B", "text": "JavaScript", "isCorrect": true },
+      { "id": "C", "text": "Java", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 5,
+    "question": "Who wrote 'To Kill a Mockingbird'? (1)",
+    "money": 8000,
+    "answers": [
+      { "id": "A", "text": "Harper Lee", "isCorrect": true },
+      { "id": "B", "text": "J.D. Salinger", "isCorrect": false },
+      { "id": "C", "text": "Stephen King", "isCorrect": false },
+      { "id": "D", "text": "Ernest Hemingway", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 6,
+    "question": "What are the primary colors? (3)",
+    "money": 16000,
+    "answers": [
+      { "id": "A", "text": "Red", "isCorrect": true },
+      { "id": "B", "text": "Green", "isCorrect": true },
+      { "id": "C", "text": "Blue", "isCorrect": true },
+      { "id": "D", "text": "Yellow", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 7,
+    "question": "In what year did the Titanic sink? (1)",
+    "money": 32000,
+    "answers": [
+      { "id": "A", "text": "1912", "isCorrect": true },
+      { "id": "B", "text": "1905", "isCorrect": false },
+      { "id": "C", "text": "1898", "isCorrect": false },
+      { "id": "D", "text": "1923", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 8,
+    "question": "Identify the animals listed below which are mammals. (1)",
+    "money": 64000,
+    "answers": [
+      { "id": "A", "text": "Shark", "isCorrect": false },
+      { "id": "B", "text": "Dolphin", "isCorrect": true },
+      { "id": "C", "text": "Crocodile", "isCorrect": false },
+      { "id": "D", "text": "Eagle", "isCorrect": false },
+      { "id": "E", "text": "Octopus", "isCorrect": false },
+      { "id": "F", "text": "Turtle", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 9,
+    "question": "Which of these countries is landlocked? (2)",
+    "money": 125000,
+    "answers": [
+      { "id": "A", "text": "Chad", "isCorrect": true },
+      { "id": "B", "text": "Nepal", "isCorrect": true },
+      { "id": "C", "text": "Colombia", "isCorrect": false },
+      { "id": "D", "text": "Myanmar", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 10,
+    "question": "Which of these cities is the capital of Australia? (1)",
+    "money": 250000,
+    "answers": [
+      { "id": "A", "text": "Sydney", "isCorrect": false },
+      { "id": "B", "text": "Melbourne", "isCorrect": false },
+      { "id": "C", "text": "Canberra", "isCorrect": true },
+      { "id": "D", "text": "Brisbane", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 11,
+    "question": "Which scientist is known for the theory of relativity? (1)",
+    "money": 500000,
+    "answers": [
+      { "id": "A", "text": "Isaac Newton", "isCorrect": false },
+      { "id": "B", "text": "Albert Einstein", "isCorrect": true },
+      { "id": "C", "text": "Niels Bohr", "isCorrect": false },
+      { "id": "D", "text": "Marie Curie", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 12,
+    "question": "What is the largest planet in our solar system? (1)",
+    "money": 1000000,
+    "answers": [
+      { "id": "A", "text": "Saturn", "isCorrect": false },
+      { "id": "B", "text": "Jupiter", "isCorrect": true },
+      { "id": "C", "text": "Uranus", "isCorrect": false },
+      { "id": "D", "text": "Neptune", "isCorrect": false }
+    ]
+  }
+]

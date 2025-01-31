@@ -1,0 +1,54 @@
+@use '@/styles/variables' as *;
+
+.questionCard {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.questionText {
+  font-size: 2rem;
+  font-weight: 600;
+  max-width: 70%;
+
+  @media (max-width: 768px) {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    align-self: center;
+    font-size: 1.5rem;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 1.125rem;
+  }
+}
+
+.answers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+
+  @media (max-width: 768px) {
+    flex: 1;
+    gap: 0.5rem;
+  }
+}
+
+.submitButton {
+  align-self: flex-start;
+  background-color: $color-orange;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+
+  &:hover {
+    background-color: $color-orange-light;
+  }
+  &:active {
+    background-color: $color-orange-dark;
+  }
+}

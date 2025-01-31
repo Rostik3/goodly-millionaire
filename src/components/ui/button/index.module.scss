@@ -1,0 +1,26 @@
+@use '@/styles/variables' as *;
+
+.button {
+  text-wrap: nowrap;
+  background-color: $color-orange;
+  color: $color-white;
+  border: none;
+  border-radius: 8px;
+  padding: 1.25rem 7.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease-out;
+
+  &:hover {
+    background-color: $color-orange-light;
+  }
+
+  &:active {
+    background: $color-orange-dark;
+  }
+
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
+}
