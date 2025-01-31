@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import ProgressCell from '@/components/game/progress-cell';
 import QuestionCard from '@/components/game/question-card';
 import MobilePrizeSidebar from '@/components/game/sidebar';
-import { getLadderCellThemeByIndex } from '@/helpers/palette';
+import { getLadderCellThemeByIndex } from '@/helpers';
 import { useGameLogic } from '@/hooks/useGameLogic';
 import { fetchQuestions } from '@/lib/quizApi';
 import { Question } from '@/types/questions';

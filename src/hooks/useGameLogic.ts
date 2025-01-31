@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { STORAGE_KEY } from '@/helpers/constants';
+import { STORAGE_KEY } from '@/helpers';
 import type { AnswerCellState, GameState, Question } from '@/types/questions';
 
 interface UseGameLogicProps {
@@ -24,6 +24,8 @@ export function useGameLogic({ questions }: UseGameLogicProps) {
 
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  const [hasRestored, setHasRestored] = useState(false);
+
   const currentQuestion = questions[currentIndex] || null;
   const totalQuestions = questions.length;
 
@@ -44,16 +46,18 @@ export function useGameLogic({ questions }: UseGameLogicProps) {
         console.error('useGameLogic.ts: error parsing localStorage:', err);
       }
     }
+    setHasRestored(true);
   }, []);
 
   useEffect(() => {
+    if (!hasRestored) return;
     const gameState: GameState = {
       currentIndex,
       totalPrize,
       isGameOver,
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(gameState));
-  }, [currentIndex, totalPrize, isGameOver]);
+  }, [hasRestored, currentIndex, totalPrize, isGameOver]);
 
   useEffect(() => {
     if (isGameOver) {
@@ -70,9 +74,9 @@ export function useGameLogic({ questions }: UseGameLogicProps) {
   }, []);
 
   useEffect(() => {
-    const initStates: Record<string, AnswerCellState> = {};
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (!currentQuestion) return;
+    const initStates: Record<string, AnswerCellState> = {};
     currentQuestion.answers.forEach((ans) => {
       initStates[ans.id] = 'inactive';
     });

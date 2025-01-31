@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 
 import HeroSection from '@/components/hero-section';
 import Headline from '@/components/ui/headline';
-import { STORAGE_KEY } from '@/helpers/constants';
+import { STORAGE_KEY } from '@/helpers';
 
 import styles from './page.module.scss';
 

@@ -1,4 +1,4 @@
-import { getFormattedMoneyAmount } from '@/helpers/format';
+import { getFormattedMoneyAmount } from '@/helpers';
 import { AnswerLadderCellState } from '@/types/questions';
 
 import styles from './index.module.scss';

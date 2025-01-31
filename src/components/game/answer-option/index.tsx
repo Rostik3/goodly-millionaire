@@ -1,4 +1,4 @@
-import { getAnswerCellThemeByState } from '@/helpers/palette';
+import { getAnswerCellThemeByState } from '@/helpers';
 import { AnswerCellState } from '@/types/questions';
 
 import styles from './index.module.scss';

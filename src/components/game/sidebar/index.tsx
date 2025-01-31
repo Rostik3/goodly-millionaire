@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 
 import ProgressCell from '@/components/game/progress-cell';
-import { getLadderCellThemeByIndex } from '@/helpers/palette';
+import { getLadderCellThemeByIndex } from '@/helpers';
 
 import styles from './index.module.scss';
 
