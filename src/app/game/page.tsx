@@ -7,52 +7,38 @@ import { useEffect, useState } from 'react';
 import ProgressCell from '@/components/game/progress-cell';
 import QuestionCard from '@/components/game/question-card';
 import MobilePrizeSidebar from '@/components/game/sidebar';
-import { getLadderCellThemeByIndex } from '@/helpers';
+import Loader from '@/components/ui/loader';
+import { getLadderCellThemeByIndex, RESULT_PAGE_URL } from '@/helpers';
 import { useGameLogic } from '@/hooks/useGameLogic';
-import { fetchQuestions } from '@/lib/quizApi';
-import { Question } from '@/types/questions';
 
 import styles from './page.module.scss';
 
 export default function GamePage() {
   const router = useRouter();
-  const [questions, setQuestions] = useState<Question[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  useEffect(() => {
-    void (async () => {
-      try {
-        const data = await fetchQuestions();
-        setQuestions(data);
-      } catch (e) {
-        console.error('GamePage: error fetching GraphQL data:', e);
-      } finally {
-        setIsLoading(false);
-      }
-    })();
-  }, []);
-
   const {
+    questions,
     currentQuestion,
     currentIndex,
     totalPrize,
     isGameOver,
     answerStates,
     isLocked,
+    isLoading,
     handleAnswerClick,
-  } = useGameLogic({ questions });
+  } = useGameLogic();
 
   useEffect(() => {
     if (isGameOver) {
-      router.push(`/result?prize=${totalPrize.toString()}`);
+      router.push(`${RESULT_PAGE_URL}?prize=${totalPrize.toString()}`);
     }
   }, [isGameOver, totalPrize, router]);
 
   const prizes = questions.map((q) => q.money);
 
   if (isLoading) {
-    return <div>Loading questions...</div>;
+    return <Loader />;
   }
 
   if (!questions.length) {

@@ -19,6 +19,7 @@ const AnswerOption = ({
   onClick,
 }: AnswerOptionProps) => {
   const palette = getAnswerCellThemeByState(state);
+  const currentStateCls = styles[palette.state] || '';
 
   // Disable clicks between new possible answers for the proper transition between answer states
   const handleClick = () => {
@@ -29,7 +30,7 @@ const AnswerOption = ({
 
   return (
     <div
-      className={`${styles.answerCell} ${styles[palette.state]}`}
+      className={`${styles.answerCell} ${currentStateCls}`}
       onClick={handleClick}
     >
       <svg

@@ -2,6 +2,7 @@
 @use '@/styles/mixins' as mixins;
 
 .answerCell {
+  cursor: pointer;
   @include mixins.cell-base(40%);
 
   @media (max-width: 768px) {
@@ -39,6 +40,9 @@
     .answer {
       font-size: 1.25rem;
       font-weight: 400;
+      overflow: hidden;
+      text-wrap: nowrap;
+      text-overflow: ellipsis;
     }
   }
 }

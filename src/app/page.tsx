@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 
 import HeroSection from '@/components/hero-section';
 import Headline from '@/components/ui/headline';
-import { STORAGE_KEY } from '@/helpers';
+import { GAME_PAGE_URL, STORAGE_KEY } from '@/helpers';
 
 import styles from './page.module.scss';
 
@@ -15,12 +15,12 @@ export default function HomePage() {
   useEffect(() => {
     const activeSession = localStorage.getItem(STORAGE_KEY);
     if (activeSession) {
-      router.push('/game');
+      router.push(GAME_PAGE_URL);
     }
   }, [router]);
 
   const handleGameStart = () => {
-    router.push('/game');
+    router.push(GAME_PAGE_URL);
   };
 
   return (

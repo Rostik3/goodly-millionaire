@@ -1,16 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { STORAGE_KEY } from '@/helpers';
+import { ANSWER_CELL_STATE, STORAGE_KEY } from '@/helpers';
+import { fetchQuestions } from '@/lib/quizApi';
 import type { AnswerCellState, GameState, Question } from '@/types/questions';
 
-interface UseGameLogicProps {
-  questions: Question[];
-}
-
-export function useGameLogic({ questions }: UseGameLogicProps) {
+export function useGameLogic() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [totalPrize, setTotalPrize] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   // For multiple-correct answers
   const [foundCorrectCount, setFoundCorrectCount] = useState(0);
@@ -27,12 +26,26 @@ export function useGameLogic({ questions }: UseGameLogicProps) {
   const [hasRestored, setHasRestored] = useState(false);
 
   const currentQuestion = questions[currentIndex] || null;
-  const totalQuestions = questions.length;
-
-  const correctAnswers = totalQuestions
+  const correctAnswers = !isLoading
     ? currentQuestion.answers.filter((a) => a.isCorrect)
     : [];
-  const currentQuestionId = totalQuestions ? currentQuestion.id : null;
+  const currentQuestionId = !isLoading ? currentQuestion.id : null;
+
+  useEffect(() => {
+    void (async () => {
+      try {
+        const data = await fetchQuestions();
+        setQuestions(data);
+      } catch (e) {
+        console.error(
+          'useGameLogic.ts: error fetching questions from gql endpoint:',
+          e,
+        );
+      } finally {
+        setIsLoading(false);
+      }
+    })();
+  }, []);
 
   useEffect(() => {
     const savedState = localStorage.getItem(STORAGE_KEY);
@@ -78,7 +91,7 @@ export function useGameLogic({ questions }: UseGameLogicProps) {
     if (!currentQuestion) return;
     const initStates: Record<string, AnswerCellState> = {};
     currentQuestion.answers.forEach((ans) => {
-      initStates[ans.id] = 'inactive';
+      initStates[ans.id] = ANSWER_CELL_STATE.INACTIVE;
     });
     setAnswerStates(initStates);
     setFoundCorrectCount(0);
@@ -97,23 +110,24 @@ export function useGameLogic({ questions }: UseGameLogicProps) {
     }
 
     const currentState = answerStates[answerId];
-    if (currentState === 'correct' || currentState === 'wrong') {
+    if (
+      currentState === ANSWER_CELL_STATE.CORRECT ||
+      currentState === ANSWER_CELL_STATE.WRONG
+    ) {
       return;
     }
 
     setAnswerStates((prev) => ({
       ...prev,
-      [answerId]: 'selected',
+      [answerId]: ANSWER_CELL_STATE.SELECTED,
     }));
     setIsLocked(true);
 
     timeoutRef.current = setTimeout(() => {
-      const isAnswerCorrect = answer.isCorrect;
-
-      if (isAnswerCorrect) {
+      if (answer.isCorrect) {
         setAnswerStates((prev) => ({
           ...prev,
-          [answerId]: 'correct',
+          [answerId]: ANSWER_CELL_STATE.CORRECT,
         }));
 
         const newCount = foundCorrectCount + 1;
@@ -123,7 +137,7 @@ export function useGameLogic({ questions }: UseGameLogicProps) {
           if (newCount === correctAnswers.length) {
             setTotalPrize(currentQuestion.money);
 
-            if (currentIndex < totalQuestions - 1) {
+            if (currentIndex < questions.length - 1) {
               setCurrentIndex((prev) => prev + 1);
               setAnswerStates({});
               setFoundCorrectCount(0);
@@ -136,10 +150,20 @@ export function useGameLogic({ questions }: UseGameLogicProps) {
           }
         }, 1000);
       } else {
-        setAnswerStates((prev) => ({
-          ...prev,
-          [answerId]: 'wrong',
-        }));
+        setAnswerStates((prev) => {
+          const wrongPickStates = { ...prev };
+
+          // Loop through each correct answer to let user know correct answer/answers even on the wrong pick
+          correctAnswers.forEach(({ id }) => {
+            if (wrongPickStates.hasOwnProperty(id)) {
+              wrongPickStates[id] = ANSWER_CELL_STATE.CORRECT;
+            }
+          });
+
+          wrongPickStates[answerId] = ANSWER_CELL_STATE.WRONG;
+
+          return wrongPickStates;
+        });
 
         timeoutRef.current = setTimeout(() => {
           setIsGameOver(true);
@@ -149,12 +173,14 @@ export function useGameLogic({ questions }: UseGameLogicProps) {
   };
 
   return {
+    questions,
     currentQuestion,
     currentIndex,
     totalPrize,
     isGameOver,
     answerStates,
     isLocked,
+    isLoading,
     handleAnswerClick,
   };
 }

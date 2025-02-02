@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 
 import HeroSection from '@/components/hero-section';
 import Headline from '@/components/ui/headline';
-import { getFormattedMoneyAmount } from '@/helpers';
+import { GAME_PAGE_URL, getFormattedMoneyAmount } from '@/helpers';
 
 import styles from './page.module.scss';
 
@@ -17,7 +17,7 @@ export default function ResultPageClient() {
   useEffect(() => {
     const activeSession = localStorage.getItem('activeGameSession');
     if (activeSession) {
-      router.push('/game');
+      router.push(GAME_PAGE_URL);
     } else {
       const earnedParam = searchParams.get('prize');
       const prizeValue = earnedParam ? parseInt(earnedParam, 10) : 0;
@@ -26,7 +26,7 @@ export default function ResultPageClient() {
   }, [searchParams, router]);
 
   const handleGameRestart = () => {
-    router.push('/game');
+    router.push(GAME_PAGE_URL);
   };
 
   return (
